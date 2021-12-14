@@ -1,0 +1,213 @@
+openapi: 3.0.0
+info:
+  title: Jobs API
+  contact: {}
+  version: '1.0'
+servers:
+  - url: https://node-express-jobs-api.herokuapp.com/api/v1
+    variables: {}
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: LOGIN - PRODUCTION
+      operationId: LOGIN-PRODUCTION
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LOGIN-PRODUCTIONREQUEST'
+            example:
+              password: monicasecret
+              email: monica@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: REGISTER - PRODUCTION
+      operationId: REGISTER-PRODUCTION
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/REGISTER-PRODUCTIONREQUEST'
+            example:
+              name: monica
+              password: monicasecret
+              email: monica@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /jobs:
+    post:
+      tags:
+        - Jobs
+      summary: Create job - PRODUCTION
+      operationId: Createjob-PRODUCTION
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Createjob-PRODUCTIONRequest'
+            example:
+              company: EY
+              position: senior manager
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Jobs
+      summary: ALL JOBS - PRODUCTION
+      operationId: ALLJOBS-PRODUCTION
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /jobs/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The job ID
+    get:
+      tags:
+        - Jobs
+      summary: Single job - PRODUCTION
+      operationId: Singlejob-PRODUCTION
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+        - Jobs
+      summary: Update job - PRODUCTION
+      operationId: Updatejob-PRODUCTION
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Updatejob-PRODUCTIONRequest'
+            example:
+              company: spice-jet
+              position: full-stack developer
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Jobs
+      summary: Delete job - PRODUCTION
+      operationId: Deletejob-PRODUCTION
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    LOGIN-PRODUCTIONREQUEST:
+      title: LOGIN-PRODUCTIONREQUEST
+      required:
+        - password
+        - email
+      type: object
+      properties:
+        password:
+          type: string
+        email:
+          type: string
+      example:
+        password: monicasecret
+        email: monica@gmail.com
+    REGISTER-PRODUCTIONREQUEST:
+      title: REGISTER-PRODUCTIONREQUEST
+      required:
+        - name
+        - password
+        - email
+      type: object
+      properties:
+        name:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+      example:
+        name: monica
+        password: monicasecret
+        email: monica@gmail.com
+    Createjob-PRODUCTIONRequest:
+      title: Createjob-PRODUCTIONRequest
+      required:
+        - company
+        - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: EY
+        position: senior manager
+    Updatejob-PRODUCTIONRequest:
+      title: Updatejob-PRODUCTIONRequest
+      required:
+        - company
+        - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: spice-jet
+        position: full-stack developer
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+  - httpBearer: []
+tags:
+  - name: Auth
+    description: ''
+  - name: Jobs
+    description: ''
